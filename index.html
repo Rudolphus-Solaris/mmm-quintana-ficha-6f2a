@@ -177,6 +177,13 @@
     font-size: 12.5px; color: var(--ink-faint);
     margin: 6px 0 12px 34px; max-width: 62ch;
   }
+  .q-reco {
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 13px; color: #4A3A0E; background: #FFF7E6;
+    border-left: 3px solid var(--amber); border-radius: 3px;
+    padding: 10px 14px; margin: 8px 0 12px 34px; max-width: 62ch;
+  }
+  .q-reco b { color: var(--amber-deep); }
   .q textarea {
     width: 100%; min-height: 84px; resize: vertical;
     font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -259,15 +266,15 @@
       <li>No hay respuestas incorrectas ni forma correcta de escribir. Cuéntenlo como se lo contarían a un amigo que no sabe nada del rubro inmobiliario.</li>
       <li>No hace falta responder todo de una sola vez, ni en orden.</li>
       <li>Donde ya tenemos una lectura previa (marcada <span class="tag">LECTURA EXTERNA</span>), solo confirmen o corrijan.</li>
-      <li>La Parte 3 les pide el proceso completo, paso a paso — es la sección más larga a propósito, porque es la que más nos falta.</li>
+      <li>La Parte 2 les muestra nuestra recomendación del proceso completo, etapa por etapa — solo confirmen o corrijan, no hace falta escribir desde cero.</li>
       <li>Al final, el botón "Descargar respuestas" genera un archivo con todo lo escrito, listo para enviarnos.</li>
     </ul>
   </div>
 
   <div class="partnav">
     <a href="#parte1">Parte 1 — El negocio</a>
-    <a href="#parte2">Parte 2 — El mercado</a>
-    <a href="#parte3">Parte 3 — El proceso completo</a>
+    <a href="#parte2">Parte 2 — El proceso completo</a>
+    <a href="#parte3">Parte 3 — El mercado</a>
     <a href="#parte4">Parte 4 — Cómo trabajan</a>
   </div>
 
@@ -278,8 +285,8 @@
     <p class="part-sub">La base de todo lo demás.</p>
 
     <div class="q" data-q="1">
-      <div class="q-label"><span class="q-badge">1</span><span class="q-text">Cuéntennos la historia de Quintana Propiedades: ¿cómo y por qué nació, qué la hace diferente de cualquier otra inmobiliaria en Lima, y qué principios guían cómo trabajan (aunque nunca los hayan escrito)?</span></div>
-      <p class="q-why">La historia de origen suele contener, sin que se den cuenta, la razón más honesta de por qué el negocio existe — y es la base de todo el posicionamiento que viene después.</p>
+      <div class="q-label"><span class="q-badge">1</span><span class="q-text">Cuéntennos la historia de Quintana Propiedades: ¿cómo y por qué nació, qué la hace diferente de cualquier otra inmobiliaria en Lima, y qué principios guían cómo trabajan (aunque nunca los hayan escrito)? De paso: ¿hace cuánto operan, cuántas propiedades han movido aproximadamente, y hay alguna historia de cliente satisfecho que puedan contar?</span></div>
+      <p class="q-why">La historia de origen suele contener, sin que se den cuenta, la razón más honesta de por qué el negocio existe — y los números/historias reales son mejores que las cifras genéricas del sitio actual.</p>
       <textarea placeholder="Escriban aquí, con sus propias palabras..."></textarea>
     </div>
 
@@ -317,15 +324,81 @@
 
     <div class="q" data-q="4">
       <span class="q-lectura">Lectura externa — confirmar o corregir</span>
-      <div class="q-label"><span class="q-badge">4</span><span class="q-text">Identificamos el saneamiento legal como una posible fortaleza diferenciadora. ¿Es realmente algo que hacen muy bien y seguido, o es un trámite más? Y de paso: ¿hace cuánto operan, cuántas propiedades han movido aproximadamente, y hay alguna historia de cliente satisfecho que puedan contar?</span></div>
-      <p class="q-why">Solo tiene sentido construir el mensaje de marca alrededor del saneamiento si es una fortaleza real y comprobable — y los números/historias reales son mejores que las cifras genéricas del sitio actual.</p>
-      <textarea placeholder="Escriban aquí..."></textarea>
+      <div class="q-label"><span class="q-badge">4</span><span class="q-text">Para cada servicio que ofrecen, necesitamos tres cosas: (a) la lista completa de servicios, (b) en qué orden de importancia o prioridad los pondrían ustedes, y (c) cómo funciona el proceso de cada uno, paso a paso, de inicio a fin. Esto incluye confirmar si el saneamiento legal es realmente una fortaleza que hacen muy bien y seguido, o un trámite más.</span></div>
+      <p class="q-why">Esto es lo que nos permite diseñar el flujo del CRM y un embudo simple y claro en el sitio web — para que cualquiera, un cliente potencial que entra a la página o alguien nuevo en su equipo, entienda rápido cómo funciona cada servicio.</p>
+      <textarea placeholder="Escriban aquí — pueden ir servicio por servicio..."></textarea>
     </div>
   </div>
 
   <!-- PARTE 2 -->
   <div class="part" id="parte2">
-    <span class="part-band">Parte 2 · El mercado</span>
+    <span class="part-band">Parte 2 · El proceso completo</span>
+    <h2>Nuestra recomendación de flujo — confírmenla o corríjanla</h2>
+    <p class="part-sub">Basado en lo que nos contaron en la Parte 1 y en cómo suele funcionar mejor una inmobiliaria, proponemos un flujo estándar de 8 etapas. No es una pregunta abierta esta vez — para cada etapa les damos una recomendación breve, y solo necesitamos que nos digan qué tan cerca o lejos está de cómo trabajan ustedes realmente.</p>
+
+    <div class="stage-track">
+      <span>0 · Cómo llegan</span><span class="sep">→</span>
+      <span>1 · Primer contacto</span><span class="sep">→</span>
+      <span>2 · Calificación</span><span class="sep">→</span>
+      <span>3 · Búsqueda y visitas</span><span class="sep">→</span>
+      <span>4 · Negociación</span><span class="sep">→</span>
+      <span>5 · Papeles y saneamiento</span><span class="sep">→</span>
+      <span>6 · Cierre</span><span class="sep">→</span>
+      <span>7 · Posventa</span>
+    </div>
+
+    <div class="q stage" data-q="9">
+      <div class="q-label"><span class="q-badge">ETAPA 0</span><span class="q-text">Cómo llegan — recomendación</span></div>
+      <p class="q-reco"><b>Recomendación:</b> Lo más común en el sector es una combinación de tres fuentes: portales inmobiliarios (Urbania, Properati, etc.), redes sociales / boca a boca de clientes anteriores, y búsqueda directa del sitio propio. Idealmente se sabe, para cada contacto nuevo, por cuál llegó — así se invierte más en lo que de verdad funciona.</p>
+      <textarea placeholder="¿Coincide con su realidad? ¿Cuál es su fuente más fuerte hoy, y cuál casi no funciona?"></textarea>
+    </div>
+
+    <div class="q stage" data-q="10">
+      <div class="q-label"><span class="q-badge">ETAPA 1</span><span class="q-text">Primer contacto — recomendación</span></div>
+      <p class="q-reco"><b>Recomendación:</b> Responder en menos de 1 hora (idealmente minutos), por el mismo canal que usó el cliente sin forzarlo a cambiar. El primer mensaje debería confirmar qué busca la persona y proponer un siguiente paso concreto.</p>
+      <textarea placeholder="¿Así funciona hoy? ¿Cuánto tardan realmente en responder y qué dicen en ese primer mensaje?"></textarea>
+    </div>
+
+    <div class="q stage" data-q="11">
+      <div class="q-label"><span class="q-badge">ETAPA 2</span><span class="q-text">Calificación — recomendación</span></div>
+      <p class="q-reco"><b>Recomendación:</b> Antes de invertir tiempo mostrando propiedades, confirmar presupuesto real, forma de pago (crédito/contado), y urgencia real. Evita perder tiempo con curiosos.</p>
+      <textarea placeholder="¿Hacen este filtro hoy? ¿Con qué preguntas?"></textarea>
+    </div>
+
+    <div class="q stage" data-q="12">
+      <div class="q-label"><span class="q-badge">ETAPA 3</span><span class="q-text">Búsqueda y visitas — recomendación</span></div>
+      <p class="q-reco"><b>Recomendación:</b> Preseleccionar 3-5 opciones reales dentro de presupuesto antes de agendar una visita, y ofrecer tanto visita presencial como fotos/video para quien no puede ir en persona.</p>
+      <textarea placeholder="¿Cómo lo hacen ustedes? ¿Cuántas propiedades suele ver un cliente antes de decidir?"></textarea>
+    </div>
+
+    <div class="q stage" data-q="13">
+      <div class="q-label"><span class="q-badge">ETAPA 4</span><span class="q-text">Negociación — recomendación</span></div>
+      <p class="q-reco"><b>Recomendación:</b> Tener claros de antemano los márgenes de negociación posibles (precio mínimo aceptable, condiciones flexibles) para responder rápido sin tener que consultar cada vez.</p>
+      <textarea placeholder="¿Quién de su equipo negocia, y cómo se decide hasta dónde se puede ceder?"></textarea>
+    </div>
+
+    <div class="q stage" data-q="14">
+      <div class="q-label"><span class="q-badge">ETAPA 5</span><span class="q-text">Papeles y saneamiento legal — recomendación</span></div>
+      <p class="q-reco"><b>Recomendación:</b> Esta es la etapa donde más inmobiliarias pierden la confianza del cliente por demoras o falta de comunicación — mantenerlo informado del avance, aunque no haya novedades, reduce la ansiedad.</p>
+      <textarea placeholder="¿Cómo lo manejan hoy? ¿Cuánto toma en promedio y qué tan seguido le avisan al cliente?"></textarea>
+    </div>
+
+    <div class="q stage" data-q="15">
+      <div class="q-label"><span class="q-badge">ETAPA 6</span><span class="q-text">Cierre — recomendación</span></div>
+      <p class="q-reco"><b>Recomendación:</b> El día del cierre debería sentirse como una celebración, no solo un trámite — es el momento ideal para pedir la reseña o el testimonio, mientras la satisfacción está más alta.</p>
+      <textarea placeholder="¿Qué pasa hoy ese día? ¿Piden alguna reseña o testimonio en ese momento?"></textarea>
+    </div>
+
+    <div class="q stage" data-q="16">
+      <div class="q-label"><span class="q-badge">ETAPA 7</span><span class="q-text">Posventa — recomendación</span></div>
+      <p class="q-reco"><b>Recomendación:</b> Esta suele ser la etapa más descuidada del sector, y la más rentable de mejorar — un seguimiento simple (una llamada al mes, un mensaje en fechas importantes) mantiene la puerta abierta para referidos futuros.</p>
+      <textarea placeholder="¿Hacen algún seguimiento hoy? Si no, ¿qué tan factible sería empezar?"></textarea>
+    </div>
+  </div>
+
+  <!-- PARTE 3 -->
+  <div class="part" id="parte3">
+    <span class="part-band">Parte 3 · El mercado</span>
     <h2>A quién sirven y contra quién compiten</h2>
     <p class="part-sub">Lo que necesitamos para construir el mensaje de marca.</p>
 
@@ -348,68 +421,8 @@
     </div>
 
     <div class="q" data-q="8">
-      <div class="q-label"><span class="q-badge">8</span><span class="q-text">¿Qué buscan lograr en los próximos 3 a 6 meses, y con qué presupuesto de marketing cuentan?</span></div>
-      <p class="q-why">Si ya se lo contaron directamente a Rodolfo, solo confirmen aquí.</p>
-      <textarea placeholder="Escriban aquí..."></textarea>
-    </div>
-  </div>
-
-  <!-- PARTE 3 -->
-  <div class="part" id="parte3">
-    <span class="part-band">Parte 3 · El proceso completo</span>
-    <h2>Desde que alguien los encuentra hasta después de cerrado el trato</h2>
-    <p class="part-sub">Esta es la sección más importante de la ficha. Cuéntennos cada etapa tal como sucede en la realidad — no el proceso ideal, el de todos los días. No hace falta que sea formal.</p>
-
-    <div class="stage-track">
-      <span>0 · Cómo llegan</span><span class="sep">→</span>
-      <span>1 · Primer contacto</span><span class="sep">→</span>
-      <span>2 · Calificación</span><span class="sep">→</span>
-      <span>3 · Búsqueda y visitas</span><span class="sep">→</span>
-      <span>4 · Negociación</span><span class="sep">→</span>
-      <span>5 · Papeles y saneamiento</span><span class="sep">→</span>
-      <span>6 · Cierre</span><span class="sep">→</span>
-      <span>7 · Posventa</span>
-    </div>
-
-    <div class="q stage" data-q="9">
-      <div class="q-label"><span class="q-badge">ETAPA 0</span><span class="q-text">¿Cómo llega hoy un cliente potencial a enterarse de Quintana Propiedades? (búsqueda en internet, redes, un cartel, un referido de un cliente anterior, un portal inmobiliario, etc.)</span></div>
-      <p class="q-hint">¿Hay una fuente que traiga más clientes que las demás? ¿Cuál casi no funciona?</p>
-      <textarea placeholder="Escriban aquí..."></textarea>
-    </div>
-
-    <div class="q stage" data-q="10">
-      <div class="q-label"><span class="q-badge">ETAPA 1</span><span class="q-text">Cuando alguien escribe o llama por primera vez, ¿qué pasa exactamente? ¿Quién responde, en cuánto tiempo, por qué canal (WhatsApp, llamada, correo), y qué le dicen o preguntan?</span></div>
-      <textarea placeholder="Escriban aquí..."></textarea>
-    </div>
-
-    <div class="q stage" data-q="11">
-      <div class="q-label"><span class="q-badge">ETAPA 2</span><span class="q-text">¿Cómo determinan si esa persona es un interesado serio (tiene presupuesto real, está lista para decidir) o solo está mirando? ¿Hacen alguna pregunta o filtro en particular?</span></div>
-      <textarea placeholder="Escriban aquí..."></textarea>
-    </div>
-
-    <div class="q stage" data-q="12">
-      <div class="q-label"><span class="q-badge">ETAPA 3</span><span class="q-text">¿Cómo buscan las propiedades que le van a mostrar, y cómo se hace la visita o presentación — presencial, fotos, video, visita virtual? ¿Cuántas propiedades suele ver antes de decidirse?</span></div>
-      <textarea placeholder="Escriban aquí..."></textarea>
-    </div>
-
-    <div class="q stage" data-q="13">
-      <div class="q-label"><span class="q-badge">ETAPA 4</span><span class="q-text">Cuando alguien quiere avanzar, ¿cómo se maneja la negociación — precio, condiciones, plazos? ¿Quién de su equipo participa en esa conversación?</span></div>
-      <textarea placeholder="Escriban aquí..."></textarea>
-    </div>
-
-    <div class="q stage" data-q="14">
-      <div class="q-label"><span class="q-badge">ETAPA 5</span><span class="q-text">¿Dónde entra el tema de papeles y saneamiento legal en el proceso? ¿Quién lo hace, cuánto tiempo suele tomar, y qué es lo que más se complica o se atrasa en esta parte?</span></div>
-      <textarea placeholder="Escriban aquí..."></textarea>
-    </div>
-
-    <div class="q stage" data-q="15">
-      <div class="q-label"><span class="q-badge">ETAPA 6</span><span class="q-text">¿Qué pasa el día que se cierra el trato — la firma, el pago, la entrega? ¿Quién está presente y qué se le entrega o explica al cliente ese día?</span></div>
-      <textarea placeholder="Escriban aquí..."></textarea>
-    </div>
-
-    <div class="q stage" data-q="16">
-      <div class="q-label"><span class="q-badge">ETAPA 7</span><span class="q-text">Después de cerrado el trato, ¿qué hacen? ¿Hay seguimiento, se piden referidos, se mantiene la relación de alguna forma — o ahí termina el contacto? Si pudieran mejorar esta parte, ¿qué harían?</span></div>
-      <p class="q-hint">Esta etapa suele ser la más descuidada en el rubro inmobiliario — y la más fácil de convertir en nuevos clientes por recomendación.</p>
+      <div class="q-label"><span class="q-badge">8</span><span class="q-text">¿Con qué presupuesto cuentan, en términos generales, para dos cosas distintas: (1) marketing — hacerse conocer, publicidad, contenido — y (2) mejorar sus procesos internos — software, CRM, herramientas?</span></div>
+      <p class="q-why">Nos permite proponer algo realista, no una lista de ideas que no se puedan pagar — y separar lo que es inversión en visibilidad de lo que es inversión en operación.</p>
       <textarea placeholder="Escriban aquí..."></textarea>
     </div>
   </div>
