@@ -122,16 +122,6 @@
     color: var(--ink-soft); font-size: 13.5px; font-style: italic; max-width: 62ch; margin: 0 0 26px;
   }
 
-  .stage-track {
-    display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 24px;
-    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  }
-  .stage-track span {
-    font-size: 10.5px; font-weight: 700; color: var(--amber-deep);
-    background: #FFF3D6; padding: 4px 9px; border-radius: 12px;
-  }
-  .stage-track span.sep { background: none; color: var(--ink-faint); padding: 4px 2px; }
-
   .q {
     background: var(--paper-raised); border: 1px solid var(--line);
     border-radius: 4px; padding: 18px 20px; margin-bottom: 14px;
@@ -145,9 +135,7 @@
     font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center;
     font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin-top: 1px;
   }
-  .q.stage .q-badge { background: var(--navy); color: var(--amber); font-size: 10px; width: auto; min-width: 24px; height: 24px; padding: 0 8px; border-radius: 6px; white-space: nowrap; }
   .q.answered .q-badge { background: var(--amber); color: var(--navy); }
-  .q.stage.answered .q-badge { background: var(--amber); color: var(--navy); }
   .q-text { font-size: 15px; font-weight: 700; color: var(--ink); }
   .q-lectura {
     display: inline-block; margin-left: 34px; margin-bottom: 6px;
@@ -160,13 +148,6 @@
     font-size: 12.5px; color: var(--amber-deep); font-style: italic;
     margin: 6px 0 12px 34px; max-width: 60ch;
   }
-  .q-reco {
-    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    font-size: 13px; color: #4A3A0E; background: #FFF7E6;
-    border-left: 3px solid var(--amber); border-radius: 3px;
-    padding: 10px 14px; margin: 8px 0 12px 34px; max-width: 62ch;
-  }
-  .q-reco b { color: var(--amber-deep); }
   .q textarea {
     width: 100%; min-height: 84px; resize: vertical;
     font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -190,7 +171,7 @@
     padding: 7px 14px 7px 10px; font-size: 13px; color: var(--ink-soft); cursor: pointer;
     transition: all 0.15s ease;
   }
-  .chip input { accent-color: var(--amber); width: 14px; height: 14px; margin: 0; }
+  .chip input[type="checkbox"], .chip input[type="radio"] { accent-color: var(--amber); width: 14px; height: 14px; margin: 0; }
   .chip:hover { border-color: var(--gold-light); }
   .chip:has(input:checked) { background: #FFF3D6; border-color: var(--amber); color: var(--ink); font-weight: 600; }
   .chip-other input[type="text"] {
@@ -198,6 +179,29 @@
     font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--ink);
   }
   .chip-other input[type="text"]:focus { outline: none; }
+  .chip-remove {
+    border: none; background: none; color: var(--ink-faint); font-size: 14px; cursor: pointer;
+    line-height: 1; padding: 0 0 0 2px;
+  }
+  .chip-remove:hover { color: #B3261E; }
+
+  .add-servicio-row {
+    display: flex; gap: 8px; margin: 4px 0 10px 34px; max-width: 62ch;
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  .add-servicio-row input[type="text"] {
+    flex: 1; font-size: 13.5px; color: var(--ink);
+    background: var(--paper); border: 1px solid var(--line); border-radius: 20px;
+    padding: 8px 14px;
+  }
+  .add-servicio-row input[type="text"]:focus { outline: none; border-color: var(--amber); }
+  .btn-addservicio {
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 12.5px; font-weight: 700; color: var(--navy);
+    background: var(--gold-pale); border: none; border-radius: 20px;
+    padding: 8px 16px; cursor: pointer; white-space: nowrap; transition: background 0.15s ease;
+  }
+  .btn-addservicio:hover { background: var(--amber); }
 
   /* Guided per-service process builder */
   .procesos { margin: 4px 0 4px 34px; max-width: 62ch; }
@@ -237,11 +241,6 @@
     font-size: 12.5px; color: var(--ink-faint); font-style: italic; margin: 4px 0 12px 34px;
   }
 
-  .q table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 4px; font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
-  .q table th, .q table td { border: 1px solid var(--line); padding: 8px 10px; text-align: left; }
-  .q table th { background: var(--navy); color: var(--amber); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.04em; }
-  .table-scroll { overflow-x: auto; }
-
   .footer {
     position: sticky; bottom: 0; background: var(--paper);
     border-top: 1px solid var(--line); padding: 14px 28px;
@@ -270,14 +269,14 @@
     .wrap { padding: 0 16px 140px; }
     .cover { padding: 32px 16px 30px; margin: 0 -16px 0; }
     .progressbar { padding: 10px 16px; }
-    .q-why, .q-lectura, .choices, .procesos, .proc-empty-hint { margin-left: 0; }
+    .q-why, .q-lectura, .choices, .procesos, .proc-empty-hint, .add-servicio-row { margin-left: 0; }
   }
 </style>
 </head>
 <body>
 
 <div class="progressbar">
-  <span class="count"><strong id="answeredCount">0</strong>&nbsp;de 21 preguntas completas</span>
+  <span class="count"><strong id="answeredCount">0</strong>&nbsp;de 13 preguntas completas</span>
   <div class="track"><div class="fill" id="progressFill"></div></div>
 </div>
 
@@ -302,22 +301,21 @@
       <li>No hay respuestas incorrectas ni forma correcta de escribir. Cuéntenlo como se lo contarían a un amigo que no sabe nada del rubro inmobiliario.</li>
       <li>No hace falta responder todo de una sola vez, ni en orden.</li>
       <li>Donde ya tenemos una lectura previa (marcada <span class="tag">LECTURA EXTERNA</span>), solo confirmen o corrijan.</li>
-      <li>En "El proceso completo" les mostramos nuestra recomendación etapa por etapa — solo confirmen o corrijan.</li>
+      <li>En la pregunta 4, cada servicio que marquen abre su propio bloque de pasos — los textos grises son solo guía de qué suele ir en cada paso, escriban lo que de verdad pasa y agreguen los pasos que necesiten.</li>
       <li>Al final, el botón "Descargar respuestas" genera un archivo con todo lo escrito, listo para enviarnos.</li>
     </ul>
   </div>
 
   <div class="partnav">
     <a href="#parte1">El negocio</a>
-    <a href="#parte2">El proceso completo</a>
-    <a href="#parte3">El mercado</a>
-    <a href="#parte4">Cómo trabajan</a>
+    <a href="#parte2">El mercado</a>
+    <a href="#parte3">Cómo trabajan</a>
   </div>
 
   <!-- PARTE 1 -->
   <div class="part" id="parte1">
     <span class="part-band">Parte 1 · El negocio</span>
-    <h2>Quiénes son y qué venden</h2>
+    <h2>Quiénes son, qué venden, y cómo lo hacen</h2>
 
     <div class="q" data-q="1" data-type="text">
       <div class="q-label"><span class="q-badge">1</span><span class="q-text">Cuéntennos la historia de Quintana Propiedades: ¿cómo y por qué nació, qué la hace diferente de cualquier otra inmobiliaria en Lima, y qué principios guían cómo trabajan (aunque nunca los hayan escrito)? De paso: ¿hace cuánto operan, cuántas propiedades han movido aproximadamente, y hay alguna historia de cliente satisfecho que puedan contar?</span></div>
@@ -333,55 +331,38 @@
 
     <div class="q" data-q="3" data-type="check">
       <div class="q-label"><span class="q-badge">3</span><span class="q-text">¿Qué servicios ofrecen realmente hoy?</span></div>
-      <div class="choices">
+      <div class="choices" id="serviciosFijos">
         <label class="chip"><input type="checkbox" class="servicio-toggle" data-target="proc-venta" value="Venta de propiedades">Venta de propiedades</label>
         <label class="chip"><input type="checkbox" class="servicio-toggle" data-target="proc-alquiler" value="Alquiler de propiedades">Alquiler de propiedades</label>
         <label class="chip"><input type="checkbox" class="servicio-toggle" data-target="proc-saneamiento" value="Saneamiento legal">Saneamiento legal</label>
-        <label class="chip chip-other"><input type="checkbox" class="servicio-toggle" id="otroCheck" data-target="proc-otro" value="Otro">Otro:<input type="text" id="otroNombre" placeholder="¿cuál?"></label>
+      </div>
+      <div class="choices" id="serviciosExtra"></div>
+      <div class="add-servicio-row">
+        <input type="text" id="nuevoServicioInput" placeholder="¿Ofrecen algún otro servicio? Escríbanlo y agréguenlo...">
+        <button type="button" class="btn-addservicio" id="btnAddServicio">+ Agregar servicio</button>
       </div>
       <p class="q-why">De estos, ¿cuál les da más ingresos y cuál les demanda más tiempo/esfuerzo? (una línea basta)</p>
       <textarea class="short" placeholder="Escriban aquí..."></textarea>
     </div>
 
     <div class="q" data-q="4" data-type="process">
-      <div class="q-label"><span class="q-badge">4</span><span class="q-text">Para cada servicio que marcaron arriba, cuéntennos el proceso paso a paso — de inicio a fin. Empezamos con 3 pasos, pero agreguen todos los que necesiten.</span></div>
+      <div class="q-label"><span class="q-badge">4</span><span class="q-text">Para cada servicio que marcaron arriba, cuéntennos el proceso paso a paso — de inicio a fin. Los textos grises son solo ejemplos de qué suele ir en cada paso; escriban lo que de verdad pasa, salten lo que no aplique, y agreguen todos los pasos que necesiten.</span></div>
       <p class="q-why">Esto es lo que nos permite diseñar el flujo del CRM y un embudo simple y claro en el sitio web para cada servicio.</p>
       <p class="proc-empty-hint" id="procEmptyHint">Marquen al menos un servicio en la pregunta 3 para empezar a describir su proceso aquí.</p>
       <div class="procesos" id="procesosContainer">
         <div class="proc-block" data-service="Venta de propiedades" id="proc-venta" hidden>
           <p class="proc-title">Venta de propiedades</p>
-          <div class="proc-steps">
-            <div class="proc-step"><span class="step-num">Paso 1</span><input type="text" placeholder="¿Qué pasa primero?"></div>
-            <div class="proc-step"><span class="step-num">Paso 2</span><input type="text" placeholder="¿Y después?"></div>
-            <div class="proc-step"><span class="step-num">Paso 3</span><input type="text" placeholder="¿Y después?"></div>
-          </div>
+          <div class="proc-steps"></div>
           <button type="button" class="btn-addstep">+ Agregar paso</button>
         </div>
         <div class="proc-block" data-service="Alquiler de propiedades" id="proc-alquiler" hidden>
           <p class="proc-title">Alquiler de propiedades</p>
-          <div class="proc-steps">
-            <div class="proc-step"><span class="step-num">Paso 1</span><input type="text" placeholder="¿Qué pasa primero?"></div>
-            <div class="proc-step"><span class="step-num">Paso 2</span><input type="text" placeholder="¿Y después?"></div>
-            <div class="proc-step"><span class="step-num">Paso 3</span><input type="text" placeholder="¿Y después?"></div>
-          </div>
+          <div class="proc-steps"></div>
           <button type="button" class="btn-addstep">+ Agregar paso</button>
         </div>
         <div class="proc-block" data-service="Saneamiento legal" id="proc-saneamiento" hidden>
           <p class="proc-title">Saneamiento legal</p>
-          <div class="proc-steps">
-            <div class="proc-step"><span class="step-num">Paso 1</span><input type="text" placeholder="¿Qué pasa primero?"></div>
-            <div class="proc-step"><span class="step-num">Paso 2</span><input type="text" placeholder="¿Y después?"></div>
-            <div class="proc-step"><span class="step-num">Paso 3</span><input type="text" placeholder="¿Y después?"></div>
-          </div>
-          <button type="button" class="btn-addstep">+ Agregar paso</button>
-        </div>
-        <div class="proc-block" data-service="Otro" id="proc-otro" hidden>
-          <p class="proc-title">Otro</p>
-          <div class="proc-steps">
-            <div class="proc-step"><span class="step-num">Paso 1</span><input type="text" placeholder="¿Qué pasa primero?"></div>
-            <div class="proc-step"><span class="step-num">Paso 2</span><input type="text" placeholder="¿Y después?"></div>
-            <div class="proc-step"><span class="step-num">Paso 3</span><input type="text" placeholder="¿Y después?"></div>
-          </div>
+          <div class="proc-steps"></div>
           <button type="button" class="btn-addstep">+ Agregar paso</button>
         </div>
       </div>
@@ -390,72 +371,12 @@
 
   <!-- PARTE 2 -->
   <div class="part" id="parte2">
-    <span class="part-band">Parte 2 · El proceso completo</span>
-    <h2>Nuestra recomendación de flujo general — confírmenla o corríjanla</h2>
-    <p class="part-sub">Además del proceso de cada servicio (arriba), este es el recorrido general de un cliente. No es una pregunta abierta — para cada etapa les damos una recomendación breve, y solo necesitamos que nos digan qué tan cerca o lejos está de cómo trabajan ustedes realmente.</p>
+    <span class="part-band">Parte 2 · El mercado</span>
+    <h2>Dónde operan, a quién sirven, y con qué cuentan</h2>
 
-    <div class="stage-track">
-      <span>0 · Cómo llegan</span><span class="sep">→</span>
-      <span>1 · Primer contacto</span><span class="sep">→</span>
-      <span>2 · Calificación</span><span class="sep">→</span>
-      <span>3 · Búsqueda y visitas</span><span class="sep">→</span>
-      <span>4 · Negociación</span><span class="sep">→</span>
-      <span>5 · Papeles y saneamiento</span><span class="sep">→</span>
-      <span>6 · Cierre</span><span class="sep">→</span>
-      <span>7 · Posventa</span>
-    </div>
-
-    <div class="q stage" data-q="5" data-type="text">
-      <div class="q-label"><span class="q-badge">ETAPA 0</span><span class="q-text">Cómo llegan — recomendación</span></div>
-      <p class="q-reco"><b>Recomendación:</b> Lo más común en el sector es una combinación de tres fuentes: portales inmobiliarios (Urbania, Properati, etc.), redes sociales / boca a boca de clientes anteriores, y búsqueda directa del sitio propio. Idealmente se sabe, para cada contacto nuevo, por cuál llegó.</p>
-      <textarea placeholder="¿Coincide con su realidad? ¿Cuál es su fuente más fuerte hoy, y cuál casi no funciona?"></textarea>
-    </div>
-
-    <div class="q stage" data-q="6" data-type="text">
-      <div class="q-label"><span class="q-badge">ETAPA 1</span><span class="q-text">Primer contacto — recomendación</span></div>
-      <p class="q-reco"><b>Recomendación:</b> Responder en menos de 1 hora (idealmente minutos), por el mismo canal que usó el cliente. El primer mensaje debería confirmar qué busca la persona y proponer un siguiente paso concreto.</p>
-      <textarea placeholder="¿Así funciona hoy? ¿Cuánto tardan realmente en responder y qué dicen en ese primer mensaje?"></textarea>
-    </div>
-
-    <div class="q stage" data-q="7" data-type="text">
-      <div class="q-label"><span class="q-badge">ETAPA 2</span><span class="q-text">Calificación — recomendación</span></div>
-      <p class="q-reco"><b>Recomendación:</b> Antes de invertir tiempo mostrando propiedades, confirmar presupuesto real, forma de pago (crédito/contado), y urgencia real.</p>
-      <textarea placeholder="¿Hacen este filtro hoy? ¿Con qué preguntas?"></textarea>
-    </div>
-
-    <div class="q stage" data-q="8" data-type="text">
-      <div class="q-label"><span class="q-badge">ETAPA 3</span><span class="q-text">Búsqueda y visitas — recomendación</span></div>
-      <p class="q-reco"><b>Recomendación:</b> Preseleccionar 3-5 opciones reales dentro de presupuesto antes de agendar una visita, y ofrecer tanto visita presencial como fotos/video.</p>
-      <textarea placeholder="¿Cómo lo hacen ustedes? ¿Cuántas propiedades suele ver un cliente antes de decidir?"></textarea>
-    </div>
-
-    <div class="q stage" data-q="9" data-type="text">
-      <div class="q-label"><span class="q-badge">ETAPA 4</span><span class="q-text">Negociación — recomendación</span></div>
-      <p class="q-reco"><b>Recomendación:</b> Tener claros de antemano los márgenes de negociación posibles para responder rápido sin tener que consultar cada vez.</p>
-      <textarea placeholder="¿Quién de su equipo negocia, y cómo se decide hasta dónde se puede ceder?"></textarea>
-    </div>
-
-    <div class="q stage" data-q="10" data-type="text">
-      <div class="q-label"><span class="q-badge">ETAPA 5</span><span class="q-text">Papeles y saneamiento legal — recomendación</span></div>
-      <p class="q-reco"><b>Recomendación:</b> Esta es la etapa donde más inmobiliarias pierden la confianza del cliente por demoras o falta de comunicación — mantenerlo informado del avance reduce la ansiedad.</p>
-      <textarea placeholder="¿Cómo lo manejan hoy? ¿Cuánto toma en promedio y qué tan seguido le avisan al cliente?"></textarea>
-    </div>
-
-    <div class="q stage" data-q="11" data-type="text">
-      <div class="q-label"><span class="q-badge">ETAPA 6</span><span class="q-text">Cierre — recomendación</span></div>
-      <p class="q-reco"><b>Recomendación:</b> El día del cierre debería sentirse como una celebración — es el momento ideal para pedir la reseña o el testimonio.</p>
-      <textarea placeholder="¿Qué pasa hoy ese día? ¿Piden alguna reseña o testimonio en ese momento?"></textarea>
-    </div>
-
-    <div class="q stage" data-q="12" data-type="text">
-      <div class="q-label"><span class="q-badge">ETAPA 7</span><span class="q-text">Posventa — recomendación</span></div>
-      <p class="q-reco"><b>Recomendación:</b> Esta suele ser la etapa más descuidada del sector, y la más rentable de mejorar — un seguimiento simple mantiene la puerta abierta para referidos futuros.</p>
-      <textarea placeholder="¿Hacen algún seguimiento hoy? Si no, ¿qué tan factible sería empezar?"></textarea>
-    </div>
-
-    <div class="q" data-q="13" data-type="check">
+    <div class="q" data-q="5" data-type="check">
       <span class="q-lectura">Lectura externa — confirmar o corregir</span>
-      <div class="q-label"><span class="q-badge">13</span><span class="q-text">Encontramos información distinta en distintas páginas del sitio sobre dónde operan. ¿En cuáles de estas zonas operan realmente hoy?</span></div>
+      <div class="q-label"><span class="q-badge">5</span><span class="q-text">Encontramos información distinta en distintas páginas del sitio sobre dónde operan. ¿En cuáles de estas zonas operan realmente hoy?</span></div>
       <div class="choices">
         <label class="chip"><input type="checkbox" name="zona" value="Santa Anita">Santa Anita</label>
         <label class="chip"><input type="checkbox" name="zona" value="La Molina">La Molina</label>
@@ -466,26 +387,20 @@
         <label class="chip chip-other"><input type="checkbox" name="zona" value="Otro">Otro:<input type="text" placeholder="¿cuál?"></label>
       </div>
     </div>
-  </div>
 
-  <!-- PARTE 3 -->
-  <div class="part" id="parte3">
-    <span class="part-band">Parte 3 · El mercado</span>
-    <h2>A quién sirven y contra quién compiten</h2>
-
-    <div class="q" data-q="14" data-type="text">
-      <div class="q-label"><span class="q-badge">14</span><span class="q-text">Piensen en su mejor cliente de los últimos meses. Cuéntennos su historia: ¿quién era, qué buscaba, qué le preocupaba antes de escribirles, por qué los eligió a ustedes, y cómo terminó todo?</span></div>
+    <div class="q" data-q="6" data-type="text">
+      <div class="q-label"><span class="q-badge">6</span><span class="q-text">Piensen en su mejor cliente de los últimos meses. Cuéntennos su historia: ¿quién era, qué buscaba, qué le preocupaba antes de escribirles, por qué los eligió a ustedes, y cómo terminó todo?</span></div>
       <p class="q-why">La manera más honesta de definir a quién le hablamos. Cuéntenlo como historia, no como lista.</p>
       <textarea placeholder="Escriban aquí, como si nos contaran la historia de ese cliente..."></textarea>
     </div>
 
-    <div class="q" data-q="15" data-type="text">
-      <div class="q-label"><span class="q-badge">15</span><span class="q-text">¿A quién consideran su competencia real — no una lista de Google, sino con quién compiten de verdad por un cliente en el día a día? ¿Qué hacen ellos distinto (mejor o peor)?</span></div>
+    <div class="q" data-q="7" data-type="text">
+      <div class="q-label"><span class="q-badge">7</span><span class="q-text">¿A quién consideran su competencia real — no una lista de Google, sino con quién compiten de verdad por un cliente en el día a día? ¿Qué hacen ellos distinto (mejor o peor)?</span></div>
       <textarea placeholder="Escriban aquí..."></textarea>
     </div>
 
-    <div class="q" data-q="16" data-type="radio">
-      <div class="q-label"><span class="q-badge">16</span><span class="q-text">Para marketing (hacerse conocer, publicidad, contenido) — ¿en qué rango mensual se sentirían cómodos empezando?</span></div>
+    <div class="q" data-q="8" data-type="radio">
+      <div class="q-label"><span class="q-badge">8</span><span class="q-text">Para marketing (hacerse conocer, publicidad, contenido) — ¿en qué rango mensual se sentirían cómodos empezando?</span></div>
       <div class="choices">
         <label class="chip"><input type="radio" name="presu_mkt" value="Aún no lo sé / prefiero que me orienten">Aún no lo sé / prefiero que me orienten</label>
         <label class="chip"><input type="radio" name="presu_mkt" value="Hasta S/500/mes">Hasta S/500/mes</label>
@@ -494,8 +409,8 @@
       </div>
     </div>
 
-    <div class="q" data-q="17" data-type="radio">
-      <div class="q-label"><span class="q-badge">17</span><span class="q-text">Para mejorar procesos internos (software, CRM, herramientas) — ¿en qué rango se sentirían cómodos, como inversión inicial?</span></div>
+    <div class="q" data-q="9" data-type="radio">
+      <div class="q-label"><span class="q-badge">9</span><span class="q-text">Para mejorar procesos internos (software, CRM, herramientas) — ¿en qué rango se sentirían cómodos, como inversión inicial?</span></div>
       <div class="choices">
         <label class="chip"><input type="radio" name="presu_crm" value="Aún no lo sé / prefiero que me orienten">Aún no lo sé / prefiero que me orienten</label>
         <label class="chip"><input type="radio" name="presu_crm" value="Hasta S/500">Hasta S/500</label>
@@ -505,18 +420,18 @@
     </div>
   </div>
 
-  <!-- PARTE 4 -->
-  <div class="part" id="parte4">
-    <span class="part-band">Parte 4 · Cómo trabajan</span>
+  <!-- PARTE 3 -->
+  <div class="part" id="parte3">
+    <span class="part-band">Parte 3 · Cómo trabajan</span>
     <h2>Cultura, lo que se nos pudo haber escapado, y lo que sienten hoy</h2>
 
-    <div class="q" data-q="18" data-type="text">
-      <div class="q-label"><span class="q-badge">18</span><span class="q-text">Si un cliente describiera en una palabra cómo se siente trabajar con ustedes, ¿qué palabra les gustaría que fuera? ¿Y cuál creen que usaría realmente hoy?</span></div>
+    <div class="q" data-q="10" data-type="text">
+      <div class="q-label"><span class="q-badge">10</span><span class="q-text">Si un cliente describiera en una palabra cómo se siente trabajar con ustedes, ¿qué palabra les gustaría que fuera? ¿Y cuál creen que usaría realmente hoy?</span></div>
       <textarea class="short" placeholder="Escriban aquí..."></textarea>
     </div>
 
-    <div class="q" data-q="19" data-type="radio">
-      <div class="q-label"><span class="q-badge">19</span><span class="q-text">¿Existen redes sociales, reseñas o anuncios que ustedes tengan y que nosotros no hayamos podido encontrar buscando desde afuera?</span></div>
+    <div class="q" data-q="11" data-type="radio">
+      <div class="q-label"><span class="q-badge">11</span><span class="q-text">¿Existen redes sociales, reseñas o anuncios que ustedes tengan y que nosotros no hayamos podido encontrar buscando desde afuera?</span></div>
       <div class="choices">
         <label class="chip"><input type="radio" name="redes" value="Sí">Sí</label>
         <label class="chip"><input type="radio" name="redes" value="No">No</label>
@@ -524,14 +439,14 @@
       <textarea class="short" placeholder="Si dijeron 'sí' — ¿cuáles?"></textarea>
     </div>
 
-    <div class="q" data-q="20" data-type="text">
-      <div class="q-label"><span class="q-badge">20</span><span class="q-text">¿Qué problemas sienten que tienen en este momento?</span></div>
+    <div class="q" data-q="12" data-type="text">
+      <div class="q-label"><span class="q-badge">12</span><span class="q-text">¿Qué problemas sienten que tienen en este momento?</span></div>
       <p class="q-why">Sin filtro — puede ser de marketing, de ventas, de organización interna, lo que sea que les quite el sueño hoy.</p>
       <textarea placeholder="Escriban aquí, con toda confianza..."></textarea>
     </div>
 
-    <div class="q" data-q="21" data-type="text">
-      <div class="q-label"><span class="q-badge">21</span><span class="q-text">¿En qué tiempo quisieran solucionar estos problemas?</span></div>
+    <div class="q" data-q="13" data-type="text">
+      <div class="q-label"><span class="q-badge">13</span><span class="q-text">¿En qué tiempo quisieran solucionar estos problemas?</span></div>
       <textarea class="short" placeholder="Escriban aquí..."></textarea>
     </div>
   </div>
@@ -553,27 +468,31 @@
   const countEl = document.getElementById('answeredCount');
   const fillEl = document.getElementById('progressFill');
 
-  // Service -> process block toggling
-  document.querySelectorAll('.servicio-toggle').forEach(cb => {
-    cb.addEventListener('change', () => {
-      const target = document.getElementById(cb.dataset.target);
-      target.hidden = !cb.checked;
-      const anyVisible = document.querySelectorAll('.proc-block:not([hidden])').length > 0;
-      document.getElementById('procEmptyHint').style.display = anyVisible ? 'none' : 'block';
-      updateProgress();
-    });
-  });
-  const otroNombre = document.getElementById('otroNombre');
-  if (otroNombre) {
-    otroNombre.addEventListener('input', (e) => {
-      const title = document.querySelector('#proc-otro .proc-title');
-      title.textContent = e.target.value.trim() || 'Otro';
+  const DEFAULT_STEP_HINTS = [
+    '¿Cómo llega el cliente? (ej: portal inmobiliario, redes, boca a boca, sitio propio)',
+    '¿Cómo es el primer contacto? (ej: tiempo de respuesta, por qué canal, qué se confirma)',
+    '¿Cómo califican al cliente? (ej: presupuesto real, forma de pago, urgencia)',
+    '¿Cómo es la búsqueda y las visitas?',
+    '¿Cómo negocian?',
+    '¿Cómo manejan papeles, trámites o saneamiento?',
+    '¿Cómo es el cierre?',
+    '¿Qué hacen en la posventa?'
+  ];
+
+  function buildSteps(container) {
+    container.innerHTML = '';
+    DEFAULT_STEP_HINTS.forEach((hint, i) => {
+      const div = document.createElement('div');
+      div.className = 'proc-step';
+      div.innerHTML = '<span class="step-num">Paso ' + (i + 1) + '</span><input type="text" placeholder="' + hint + '">';
+      div.querySelector('input').addEventListener('input', updateProgress);
+      container.appendChild(div);
     });
   }
 
-  document.querySelectorAll('.btn-addstep').forEach(btn => {
+  function wireAddStepButton(block) {
+    const btn = block.querySelector('.btn-addstep');
     btn.addEventListener('click', () => {
-      const block = btn.closest('.proc-block');
       const steps = block.querySelector('.proc-steps');
       const n = steps.children.length + 1;
       const div = document.createElement('div');
@@ -582,6 +501,75 @@
       steps.appendChild(div);
       div.querySelector('input').addEventListener('input', updateProgress);
     });
+  }
+
+  function wireToggle(cb) {
+    cb.addEventListener('change', () => {
+      const target = document.getElementById(cb.dataset.target);
+      target.hidden = !cb.checked;
+      refreshEmptyHint();
+      updateProgress();
+    });
+  }
+
+  function refreshEmptyHint() {
+    const anyVisible = document.querySelectorAll('.proc-block:not([hidden])').length > 0;
+    document.getElementById('procEmptyHint').style.display = anyVisible ? 'none' : 'block';
+  }
+
+  // Wire the three fixed service blocks
+  document.querySelectorAll('#serviciosFijos .servicio-toggle').forEach(cb => {
+    wireToggle(cb);
+    const block = document.getElementById(cb.dataset.target);
+    buildSteps(block.querySelector('.proc-steps'));
+    wireAddStepButton(block);
+  });
+
+  // Dynamic extra services
+  let extraCount = 0;
+  function addExtraServicio(name) {
+    extraCount++;
+    const id = 'proc-extra-' + extraCount;
+
+    const chip = document.createElement('label');
+    chip.className = 'chip';
+    chip.innerHTML = '<input type="checkbox" class="servicio-toggle" data-target="' + id + '" value="' + name + '" checked> ' +
+      name.replace(/</g, '&lt;') + ' <button type="button" class="chip-remove" title="Quitar">×</button>';
+    document.getElementById('serviciosExtra').appendChild(chip);
+
+    const block = document.createElement('div');
+    block.className = 'proc-block';
+    block.dataset.service = name;
+    block.id = id;
+    block.innerHTML = '<p class="proc-title">' + name.replace(/</g, '&lt;') + '</p><div class="proc-steps"></div><button type="button" class="btn-addstep">+ Agregar paso</button>';
+    document.getElementById('procesosContainer').appendChild(block);
+    buildSteps(block.querySelector('.proc-steps'));
+    wireAddStepButton(block);
+    wireToggle(chip.querySelector('.servicio-toggle'));
+
+    chip.querySelector('.chip-remove').addEventListener('click', () => {
+      chip.remove();
+      block.remove();
+      refreshEmptyHint();
+      updateProgress();
+    });
+
+    refreshEmptyHint();
+    updateProgress();
+  }
+
+  document.getElementById('btnAddServicio').addEventListener('click', () => {
+    const input = document.getElementById('nuevoServicioInput');
+    const name = input.value.trim();
+    if (!name) return;
+    addExtraServicio(name);
+    input.value = '';
+  });
+  document.getElementById('nuevoServicioInput').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      document.getElementById('btnAddServicio').click();
+    }
   });
 
   function isAnswered(q) {
@@ -641,7 +629,7 @@
         blocks.forEach(b => {
           out += '\n  ' + b.dataset.service + ':\n';
           b.querySelectorAll('.proc-step input[type="text"]').forEach((inp, i) => {
-            out += '    Paso ' + (i + 1) + ': ' + (inp.value.trim() || '[vacío]') + '\n';
+            if (inp.value.trim()) out += '    Paso ' + (i + 1) + ': ' + inp.value.trim() + '\n';
           });
         });
       }
@@ -660,6 +648,7 @@
     URL.revokeObjectURL(url);
   });
 
+  refreshEmptyHint();
   updateProgress();
 </script>
 </body>
