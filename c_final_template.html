@@ -564,6 +564,7 @@
     if (!name) return;
     addExtraServicio(name);
     input.value = '';
+    input.focus();
   });
   document.getElementById('nuevoServicioInput').addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
