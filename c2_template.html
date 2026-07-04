@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quintana Propiedades — Cuestionario 2</title>
+<style>
+  :root {
+    --navy: #051026;
+    --navy-2: #0B1B3A;
+    --amber: #FCA311;
+    --amber-deep: #A67C00;
+    --gold: #B68C2D;
+    --gold-light: #E6C36A;
+    --gold-pale: #FFD36A;
+    --paper: #FBF8F2;
+    --paper-raised: #FFFFFF;
+    --ink: #1C1B18;
+    --ink-soft: #5C594E;
+    --ink-faint: #8C8878;
+    --line: #E3DCC9;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+    line-height: 1.6;
+    font-size: 15.5px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .sans { font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 28px 140px; }
+
+  .progressbar {
+    position: sticky; top: 0; z-index: 20;
+    background: var(--navy);
+    padding: 10px 28px;
+    display: flex; align-items: center; gap: 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+  }
+  .progressbar .track {
+    flex: 1; height: 6px; background: rgba(255,255,255,0.15);
+    border-radius: 3px; overflow: hidden;
+  }
+  .progressbar .fill {
+    height: 100%; width: 0%; background: var(--amber);
+    transition: width 0.4s ease;
+  }
+  .progressbar .count {
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-variant-numeric: tabular-nums;
+    font-size: 12.5px; font-weight: 700; color: var(--gold-pale);
+    white-space: nowrap;
+  }
+  .progressbar .count strong { color: #FFFFFF; }
+
+  .cover {
+    background: linear-gradient(160deg, var(--navy) 0%, var(--navy-2) 100%);
+    padding: 40px 28px 36px;
+    margin: 0 -28px 0;
+  }
+  .cover-inner { max-width: 704px; margin: 0 auto; }
+  .cover img.logo { height: 40px; margin-bottom: 22px; display: block; }
+  .eyebrow {
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 11.5px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--amber); font-weight: 700; margin-bottom: 12px;
+  }
+  h1 {
+    font-size: clamp(24px, 4.4vw, 34px);
+    line-height: 1.2; margin: 0 0 12px; color: #FFFFFF;
+    text-wrap: balance;
+  }
+  .cover .subtitle {
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 14.5px; color: var(--gold-light); max-width: 58ch; margin: 0 0 18px;
+  }
+  .cover .meta {
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    display: flex; gap: 22px; flex-wrap: wrap; font-size: 12.5px; color: rgba(255,255,255,0.55);
+  }
+  .cover .meta strong { color: rgba(255,255,255,0.85); }
+
+  .howto {
+    background: var(--paper-raised); border: 1px solid var(--line); border-left: 4px solid var(--amber);
+    padding: 18px 22px; margin: 28px 0; font-size: 13.5px; color: var(--ink-soft);
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  .howto strong { color: var(--ink); }
+  .howto ul { margin: 8px 0 0; padding-left: 18px; }
+  .howto li { margin-bottom: 5px; }
+  .howto .tag {
+    display: inline-block; background: var(--amber); color: var(--navy);
+    font-size: 9.5px; font-weight: 700; letter-spacing: 0.03em; padding: 1px 6px; border-radius: 3px;
+  }
+
+  .partnav {
+    display: flex; gap: 8px; margin: 30px 0; flex-wrap: wrap;
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  .partnav a {
+    font-size: 12.5px; font-weight: 700; color: var(--ink-soft);
+    text-decoration: none; padding: 7px 14px; border: 1px solid var(--line);
+    border-radius: 20px; background: var(--paper-raised); transition: all 0.15s ease;
+  }
+  .partnav a:hover { border-color: var(--amber); color: var(--amber-deep); background: #FFF7E6; }
+
+  .part { margin: 52px 0; scroll-margin-top: 64px; }
+  .part-band {
+    background: var(--navy); color: var(--amber);
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 700; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 11px 18px; border-radius: 3px;
+  }
+  .part h2 {
+    font-size: clamp(19px, 4vw, 23px); margin: 14px 0 6px; text-wrap: balance;
+  }
+  .part-sub {
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--ink-soft); font-size: 13.5px; font-style: italic; max-width: 62ch; margin: 0 0 26px;
+  }
+
+  .stage-track {
+    display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 24px;
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  .stage-track span {
+    font-size: 10.5px; font-weight: 700; color: var(--amber-deep);
+    background: #FFF3D6; padding: 4px 9px; border-radius: 12px;
+  }
+  .stage-track span.sep { background: none; color: var(--ink-faint); padding: 4px 2px; }
+
+  .q {
+    background: var(--paper-raised); border: 1px solid var(--line);
+    border-radius: 4px; padding: 18px 20px; margin-bottom: 14px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .q.answered { border-color: var(--amber); box-shadow: 0 0 0 1px var(--amber) inset; }
+  .q-label { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 2px; }
+  .q-badge {
+    flex-shrink: 0; width: 24px; height: 24px; border-radius: 50%;
+    background: var(--gold-pale); color: var(--navy);
+    font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center;
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin-top: 1px;
+  }
+  .q.stage .q-badge { background: var(--navy); color: var(--amber); font-size: 10px; width: auto; min-width: 24px; height: 24px; padding: 0 8px; border-radius: 6px; white-space: nowrap; }
+  .q.answered .q-badge { background: var(--amber); color: var(--navy); }
+  .q.stage.answered .q-badge { background: var(--amber); color: var(--navy); }
+  .q-text { font-size: 15px; font-weight: 700; color: var(--ink); }
+  .q-lectura {
+    display: inline-block; margin-left: 34px; margin-bottom: 6px;
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
+    color: var(--navy); background: var(--amber); padding: 2px 8px; border-radius: 10px;
+  }
+  .q-why {
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 12.5px; color: var(--amber-deep); font-style: italic;
+    margin: 6px 0 12px 34px; max-width: 60ch;
+  }
+  .q-reco {
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 13px; color: #4A3A0E; background: #FFF7E6;
+    border-left: 3px solid var(--amber); border-radius: 3px;
+    padding: 10px 14px; margin: 8px 0 12px 34px; max-width: 62ch;
+  }
+  .q-reco b { color: var(--amber-deep); }
+  .q textarea {
+    width: 100%; min-height: 84px; resize: vertical;
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 14px; color: var(--ink);
+    background: var(--paper); border: 1px solid var(--line); border-radius: 3px;
+    padding: 10px 12px; line-height: 1.5;
+  }
+  .q textarea:focus {
+    outline: none; border-color: var(--amber);
+    box-shadow: 0 0 0 3px rgba(252,163,17,0.18);
+  }
+  .q textarea.short { min-height: 46px; }
+
+  .choices {
+    display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 12px 34px;
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  .chip {
+    display: inline-flex; align-items: center; gap: 7px;
+    border: 1px solid var(--line); border-radius: 20px; background: var(--paper);
+    padding: 7px 14px 7px 10px; font-size: 13px; color: var(--ink-soft); cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .chip input { accent-color: var(--amber); width: 14px; height: 14px; margin: 0; }
+  .chip:hover { border-color: var(--gold-light); }
+  .chip:has(input:checked) { background: #FFF3D6; border-color: var(--amber); color: var(--ink); font-weight: 600; }
+  .chip-other input[type="text"] {
+    border: none; background: transparent; font-size: 13px; width: 90px;
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--ink);
+  }
+  .chip-other input[type="text"]:focus { outline: none; }
+
+  .footer {
+    position: sticky; bottom: 0; background: var(--paper);
+    border-top: 1px solid var(--line); padding: 14px 28px;
+    display: flex; justify-content: center; gap: 12px;
+  }
+  .btn-export {
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 14px; font-weight: 700; color: var(--navy);
+    background: var(--amber); border: none; border-radius: 24px;
+    padding: 13px 26px; cursor: pointer; transition: background 0.15s ease;
+  }
+  .btn-export:hover { background: var(--gold-pale); }
+  .btn-export:focus-visible { outline: 2px solid var(--navy); outline-offset: 3px; }
+
+  .closing {
+    margin: 52px 0 22px; padding: 22px 24px; background: #FFF7E6;
+    border-radius: 4px; font-size: 14px; color: #4A3A0E;
+    border-left: 4px solid var(--amber);
+  }
+  .credit {
+    text-align: center; font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 11.5px; color: var(--ink-faint); margin: 22px 0 8px; letter-spacing: 0.04em;
+  }
+
+  @media (max-width: 600px) {
+    .wrap { padding: 0 16px 140px; }
+    .cover { padding: 32px 16px 30px; margin: 0 -16px 0; }
+    .progressbar { padding: 10px 16px; }
+    .q-why, .q-lectura, .choices { margin-left: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="progressbar">
+  <span class="count"><strong id="answeredCount">0</strong>&nbsp;de __TOTAL__ completas</span>
+  <div class="track"><div class="fill" id="progressFill"></div></div>
+</div>
+
+<div class="cover">
+  <div class="cover-inner">
+    <img class="logo" src="data:image/png;base64,__LOGO_B64__" alt="DATIA">
+    <div class="eyebrow">MaximusMarketingMachine · Cuestionario 2 de 2</div>
+    <h1>Quintana Propiedades: para profundizar</h1>
+    <p class="subtitle">Sin apuro — este segundo cuestionario entra al detalle: cómo funciona cada servicio paso a paso, la zona exacta donde operan, cada etapa del proceso, y el presupuesto disponible.</p>
+    <div class="meta">
+      <span><strong>Preparado para</strong> &nbsp;Quintana Propiedades</span>
+      <span><strong>Fecha</strong> &nbsp;4 de julio, 2026</span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="howto">
+    <strong>Cómo usar este documento:</strong>
+    <ul>
+      <li>No hay respuestas incorrectas ni forma correcta de escribir.</li>
+      <li>Donde ya tenemos una lectura previa (marcada <span class="tag">LECTURA EXTERNA</span>), solo confirmen o corrijan.</li>
+      <li>La sección de proceso les muestra nuestra recomendación etapa por etapa — solo confirmen o corrijan.</li>
+      <li>Al final, el botón "Descargar respuestas" genera un archivo con todo lo escrito.</li>
+    </ul>
+  </div>
+
+  <div class="partnav">
+    <a href="#servicios">Servicios en detalle</a>
+    <a href="#proceso">El proceso, etapa por etapa</a>
+    <a href="#zona">Zona</a>
+    <a href="#presupuesto">Presupuesto</a>
+  </div>
+
+  <!-- SERVICIOS -->
+  <div class="part" id="servicios">
+    <span class="part-band">E · Servicios en detalle</span>
+    <h2>Cómo funciona cada servicio, paso a paso</h2>
+
+    <div class="q" data-q="1" data-type="text">
+      <span class="q-lectura">Lectura externa — confirmar o corregir</span>
+      <div class="q-label"><span class="q-badge">1</span><span class="q-text">Para cada servicio que ofrecen (venta, alquiler, saneamiento legal, otros), cuéntennos cómo funciona el proceso completo, de inicio a fin. Esto incluye confirmar si el saneamiento legal es una fortaleza que hacen muy bien y seguido, o un trámite más.</span></div>
+      <p class="q-why">Esto nos permite diseñar el flujo del CRM y un embudo simple y claro en el sitio web para cada servicio.</p>
+      <textarea placeholder="Escriban aquí — pueden ir servicio por servicio..."></textarea>
+    </div>
+  </div>
+
+  <!-- PROCESO -->
+  <div class="part" id="proceso">
+    <span class="part-band">F · El proceso, etapa por etapa</span>
+    <h2>Nuestra recomendación de flujo — confírmenla o corríjanla</h2>
+    <p class="part-sub">Un flujo estándar de 8 etapas. No es una pregunta abierta — para cada una les damos una recomendación breve, y solo necesitamos que nos digan qué tan cerca o lejos está de cómo trabajan ustedes realmente.</p>
+
+    <div class="stage-track">
+      <span>0 · Cómo llegan</span><span class="sep">→</span>
+      <span>1 · Primer contacto</span><span class="sep">→</span>
+      <span>2 · Calificación</span><span class="sep">→</span>
+      <span>3 · Búsqueda y visitas</span><span class="sep">→</span>
+      <span>4 · Negociación</span><span class="sep">→</span>
+      <span>5 · Papeles y saneamiento</span><span class="sep">→</span>
+      <span>6 · Cierre</span><span class="sep">→</span>
+      <span>7 · Posventa</span>
+    </div>
+
+    <div class="q stage" data-q="2" data-type="text">
+      <div class="q-label"><span class="q-badge">ETAPA 0</span><span class="q-text">Cómo llegan — recomendación</span></div>
+      <p class="q-reco"><b>Recomendación:</b> Lo más común en el sector es una combinación de tres fuentes: portales inmobiliarios (Urbania, Properati, etc.), redes sociales / boca a boca de clientes anteriores, y búsqueda directa del sitio propio. Idealmente se sabe, para cada contacto nuevo, por cuál llegó.</p>
+      <textarea placeholder="¿Coincide con su realidad? ¿Cuál es su fuente más fuerte hoy, y cuál casi no funciona?"></textarea>
+    </div>
+
+    <div class="q stage" data-q="3" data-type="text">
+      <div class="q-label"><span class="q-badge">ETAPA 1</span><span class="q-text">Primer contacto — recomendación</span></div>
+      <p class="q-reco"><b>Recomendación:</b> Responder en menos de 1 hora (idealmente minutos), por el mismo canal que usó el cliente. El primer mensaje debería confirmar qué busca la persona y proponer un siguiente paso concreto.</p>
+      <textarea placeholder="¿Así funciona hoy? ¿Cuánto tardan realmente en responder y qué dicen en ese primer mensaje?"></textarea>
+    </div>
+
+    <div class="q stage" data-q="4" data-type="text">
+      <div class="q-label"><span class="q-badge">ETAPA 2</span><span class="q-text">Calificación — recomendación</span></div>
+      <p class="q-reco"><b>Recomendación:</b> Antes de invertir tiempo mostrando propiedades, confirmar presupuesto real, forma de pago (crédito/contado), y urgencia real.</p>
+      <textarea placeholder="¿Hacen este filtro hoy? ¿Con qué preguntas?"></textarea>
+    </div>
+
+    <div class="q stage" data-q="5" data-type="text">
+      <div class="q-label"><span class="q-badge">ETAPA 3</span><span class="q-text">Búsqueda y visitas — recomendación</span></div>
+      <p class="q-reco"><b>Recomendación:</b> Preseleccionar 3-5 opciones reales dentro de presupuesto antes de agendar una visita, y ofrecer tanto visita presencial como fotos/video.</p>
+      <textarea placeholder="¿Cómo lo hacen ustedes? ¿Cuántas propiedades suele ver un cliente antes de decidir?"></textarea>
+    </div>
+
+    <div class="q stage" data-q="6" data-type="text">
+      <div class="q-label"><span class="q-badge">ETAPA 4</span><span class="q-text">Negociación — recomendación</span></div>
+      <p class="q-reco"><b>Recomendación:</b> Tener claros de antemano los márgenes de negociación posibles para responder rápido sin tener que consultar cada vez.</p>
+      <textarea placeholder="¿Quién de su equipo negocia, y cómo se decide hasta dónde se puede ceder?"></textarea>
+    </div>
+
+    <div class="q stage" data-q="7" data-type="text">
+      <div class="q-label"><span class="q-badge">ETAPA 5</span><span class="q-text">Papeles y saneamiento legal — recomendación</span></div>
+      <p class="q-reco"><b>Recomendación:</b> Esta es la etapa donde más inmobiliarias pierden la confianza del cliente por demoras o falta de comunicación — mantenerlo informado del avance reduce la ansiedad.</p>
+      <textarea placeholder="¿Cómo lo manejan hoy? ¿Cuánto toma en promedio y qué tan seguido le avisan al cliente?"></textarea>
+    </div>
+
+    <div class="q stage" data-q="8" data-type="text">
+      <div class="q-label"><span class="q-badge">ETAPA 6</span><span class="q-text">Cierre — recomendación</span></div>
+      <p class="q-reco"><b>Recomendación:</b> El día del cierre debería sentirse como una celebración — es el momento ideal para pedir la reseña o el testimonio.</p>
+      <textarea placeholder="¿Qué pasa hoy ese día? ¿Piden alguna reseña o testimonio en ese momento?"></textarea>
+    </div>
+
+    <div class="q stage" data-q="9" data-type="text">
+      <div class="q-label"><span class="q-badge">ETAPA 7</span><span class="q-text">Posventa — recomendación</span></div>
+      <p class="q-reco"><b>Recomendación:</b> Esta suele ser la etapa más descuidada del sector, y la más rentable de mejorar — un seguimiento simple mantiene la puerta abierta para referidos futuros.</p>
+      <textarea placeholder="¿Hacen algún seguimiento hoy? Si no, ¿qué tan factible sería empezar?"></textarea>
+    </div>
+  </div>
+
+  <!-- ZONA -->
+  <div class="part" id="zona">
+    <span class="part-band">G · Zona de operación</span>
+    <h2>Dónde operan realmente</h2>
+
+    <div class="q" data-q="10" data-type="check">
+      <span class="q-lectura">Lectura externa — confirmar o corregir</span>
+      <div class="q-label"><span class="q-badge">10</span><span class="q-text">Encontramos información distinta en distintas páginas del sitio. ¿En cuáles de estas zonas operan realmente hoy?</span></div>
+      <div class="choices">
+        <label class="chip"><input type="checkbox" name="zona" value="Santa Anita">Santa Anita</label>
+        <label class="chip"><input type="checkbox" name="zona" value="La Molina">La Molina</label>
+        <label class="chip"><input type="checkbox" name="zona" value="Callao">Callao</label>
+        <label class="chip"><input type="checkbox" name="zona" value="Lurigancho">Lurigancho</label>
+        <label class="chip"><input type="checkbox" name="zona" value="Surco">Surco</label>
+        <label class="chip"><input type="checkbox" name="zona" value="Miraflores">Miraflores</label>
+        <label class="chip chip-other"><input type="checkbox" name="zona" value="Otro">Otro:<input type="text" placeholder="¿cuál?"></label>
+      </div>
+      <p class="q-why">Necesitamos una zona clara y consistente para el sitio, los anuncios y las búsquedas.</p>
+    </div>
+  </div>
+
+  <!-- PRESUPUESTO -->
+  <div class="part" id="presupuesto">
+    <span class="part-band">H · Presupuesto</span>
+    <h2>Con qué cuentan para invertir</h2>
+
+    <div class="q" data-q="11" data-type="radio">
+      <div class="q-label"><span class="q-badge">11</span><span class="q-text">Para marketing (hacerse conocer, publicidad, contenido) — ¿en qué rango mensual se sentirían cómodos empezando?</span></div>
+      <div class="choices">
+        <label class="chip"><input type="radio" name="presu_mkt" value="Aún no lo sé / prefiero que me orienten">Aún no lo sé / prefiero que me orienten</label>
+        <label class="chip"><input type="radio" name="presu_mkt" value="Hasta S/500/mes">Hasta S/500/mes</label>
+        <label class="chip"><input type="radio" name="presu_mkt" value="S/500-1500/mes">S/500–1500/mes</label>
+        <label class="chip"><input type="radio" name="presu_mkt" value="Más de S/1500/mes">Más de S/1500/mes</label>
+      </div>
+    </div>
+
+    <div class="q" data-q="12" data-type="radio">
+      <div class="q-label"><span class="q-badge">12</span><span class="q-text">Para mejorar procesos internos (software, CRM, herramientas) — ¿en qué rango se sentirían cómodos, como inversión inicial?</span></div>
+      <div class="choices">
+        <label class="chip"><input type="radio" name="presu_crm" value="Aún no lo sé / prefiero que me orienten">Aún no lo sé / prefiero que me orienten</label>
+        <label class="chip"><input type="radio" name="presu_crm" value="Hasta S/500">Hasta S/500</label>
+        <label class="chip"><input type="radio" name="presu_crm" value="S/500-2000">S/500–2000</label>
+        <label class="chip"><input type="radio" name="presu_crm" value="Más de S/2000">Más de S/2000</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="closing">
+    <strong>Al terminar:</strong> con esto ya tenemos todo lo necesario. Revisamos juntos las respuestas de ambos cuestionarios en una llamada breve, confirmamos el posicionamiento, y con eso construimos la estrategia completa — canales, contenido y publicidad. Gracias por el tiempo.
+  </div>
+
+  <p class="credit">DATIA · MAXIMUSMARKETINGMACHINE</p>
+</div>
+
+<div class="footer">
+  <button class="btn-export" id="exportBtn">Descargar respuestas</button>
+</div>
+
+<script>
+  const questions = Array.from(document.querySelectorAll('.q'));
+  const total = questions.length;
+  const countEl = document.getElementById('answeredCount');
+  const fillEl = document.getElementById('progressFill');
+
+  function isAnswered(q) {
+    const boxes = q.querySelectorAll('input[type="checkbox"]');
+    if (boxes.length && Array.from(boxes).some(b => b.checked)) return true;
+    const radios = q.querySelectorAll('input[type="radio"]');
+    if (radios.length && Array.from(radios).some(r => r.checked)) return true;
+    const ta = q.querySelector('textarea');
+    if (ta && ta.value.trim().length > 0) return true;
+    return false;
+  }
+
+  function updateProgress() {
+    let answered = 0;
+    questions.forEach(q => {
+      const done = isAnswered(q);
+      q.classList.toggle('answered', done);
+      if (done) answered++;
+    });
+    countEl.textContent = answered;
+    fillEl.style.width = (answered / total * 100) + '%';
+  }
+
+  document.querySelectorAll('.q textarea, .q input').forEach(el => {
+    el.addEventListener('input', updateProgress);
+    el.addEventListener('change', updateProgress);
+  });
+
+  document.getElementById('exportBtn').addEventListener('click', () => {
+    let out = 'QUINTANA PROPIEDADES — CUESTIONARIO 2 (PARA PROFUNDIZAR)\nDATIA · MaximusMarketingMachine\nRespuestas — ' + new Date().toLocaleDateString('es-PE') + '\n\n';
+    questions.forEach(q => {
+      const label = q.querySelector('.q-text').textContent.trim();
+      out += '---\n' + label + '\n';
+      const boxes = q.querySelectorAll('input[type="checkbox"]');
+      const radios = q.querySelectorAll('input[type="radio"]');
+      if (boxes.length) {
+        const checked = Array.from(boxes).filter(b => b.checked).map(b => b.value);
+        out += (checked.length ? checked.join(', ') : '[ninguna marcada]') + '\n';
+      }
+      if (radios.length) {
+        const checked = Array.from(radios).find(r => r.checked);
+        out += (checked ? checked.value : '[sin marcar]') + '\n';
+      }
+      const ta = q.querySelector('textarea');
+      if (ta) out += (ta.value.trim() || '[sin responder]') + '\n';
+      out += '\n';
+    });
+    const blob = new Blob([out], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'Quintana Propiedades - Respuestas Cuestionario 2.txt';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  });
+
+  updateProgress();
+</script>
+</body>
+</html>
