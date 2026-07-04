@@ -241,9 +241,12 @@
     font-size: 12.5px; color: var(--ink-faint); font-style: italic; margin: 4px 0 12px 34px;
   }
 
-  .footer {
+  .footer-wrap {
     position: sticky; bottom: 0; background: var(--paper);
-    border-top: 1px solid var(--line); padding: 14px 28px;
+    border-top: 1px solid var(--line);
+  }
+  .footer {
+    padding: 14px 28px 6px;
     display: flex; justify-content: center; gap: 12px;
   }
   .btn-export {
@@ -254,6 +257,13 @@
   }
   .btn-export:hover { background: var(--gold-pale); }
   .btn-export:focus-visible { outline: 2px solid var(--navy); outline-offset: 3px; }
+  .btn-export:disabled { background: var(--line); color: var(--ink-faint); cursor: default; }
+  .submit-status {
+    text-align: center; font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 12.5px; color: var(--ink-soft); margin: 0; padding: 0 20px 12px; min-height: 14px;
+  }
+  .submit-status.ok { color: #1E7A3D; font-weight: 700; }
+  .submit-status.warn { color: #B3261E; }
 
   .closing {
     margin: 52px 0 22px; padding: 22px 24px; background: #FFF7E6;
@@ -276,7 +286,7 @@
 <body>
 
 <div class="progressbar">
-  <span class="count"><strong id="answeredCount">0</strong>&nbsp;de 13 preguntas completas</span>
+  <span class="count"><strong id="answeredCount">0</strong>&nbsp;de 11 preguntas completas</span>
   <div class="track"><div class="fill" id="progressFill"></div></div>
 </div>
 
@@ -302,7 +312,7 @@
       <li>No hace falta responder todo de una sola vez, ni en orden.</li>
       <li>Donde ya tenemos una lectura previa (marcada <span class="tag">LECTURA EXTERNA</span>), solo confirmen o corrijan.</li>
       <li>En la pregunta 4, cada servicio que marquen abre su propio bloque de pasos — los textos grises son solo guía de qué suele ir en cada paso, escriban lo que de verdad pasa y agreguen los pasos que necesiten.</li>
-      <li>Al final, el botón "Descargar respuestas" genera un archivo con todo lo escrito, listo para enviarnos.</li>
+      <li>Al final, el botón "Enviar respuestas" nos manda todo lo escrito directamente — no hace falta descargar ni adjuntar nada.</li>
     </ul>
   </div>
 
@@ -372,20 +382,22 @@
   <!-- PARTE 2 -->
   <div class="part" id="parte2">
     <span class="part-band">Parte 2 · El mercado</span>
-    <h2>Dónde operan, a quién sirven, y con qué cuentan</h2>
+    <h2>Dónde operan y a quién sirven</h2>
 
     <div class="q" data-q="5" data-type="check">
       <span class="q-lectura">Lectura externa — confirmar o corregir</span>
-      <div class="q-label"><span class="q-badge">5</span><span class="q-text">Encontramos información distinta en distintas páginas del sitio sobre dónde operan. ¿En cuáles de estas zonas operan realmente hoy?</span></div>
+      <div class="q-label"><span class="q-badge">5</span><span class="q-text">Encontramos menciones de varias zonas en el sitio. ¿En cuáles de estas regiones de Lima y Callao operan realmente hoy?</span></div>
       <div class="choices">
-        <label class="chip"><input type="checkbox" name="zona" value="Santa Anita">Santa Anita</label>
-        <label class="chip"><input type="checkbox" name="zona" value="La Molina">La Molina</label>
+        <label class="chip"><input type="checkbox" name="zona" value="Lima Este">Lima Este</label>
+        <label class="chip"><input type="checkbox" name="zona" value="Lima Moderna">Lima Moderna</label>
+        <label class="chip"><input type="checkbox" name="zona" value="Lima Sur">Lima Sur</label>
+        <label class="chip"><input type="checkbox" name="zona" value="Lima Norte">Lima Norte</label>
+        <label class="chip"><input type="checkbox" name="zona" value="Lima Centro">Lima Centro</label>
         <label class="chip"><input type="checkbox" name="zona" value="Callao">Callao</label>
-        <label class="chip"><input type="checkbox" name="zona" value="Lurigancho">Lurigancho</label>
-        <label class="chip"><input type="checkbox" name="zona" value="Surco">Surco</label>
-        <label class="chip"><input type="checkbox" name="zona" value="Miraflores">Miraflores</label>
-        <label class="chip chip-other"><input type="checkbox" name="zona" value="Otro">Otro:<input type="text" placeholder="¿cuál?"></label>
+        <label class="chip chip-other"><input type="checkbox" name="zona" value="Otra">Otra:<input type="text" placeholder="¿cuál?"></label>
       </div>
+      <p class="q-why">¿En qué distrito o zona específica sienten que tienen mayor tracción hoy — más consultas, más cierres?</p>
+      <textarea class="short" placeholder="Escriban aquí..."></textarea>
     </div>
 
     <div class="q" data-q="6" data-type="text">
@@ -399,25 +411,6 @@
       <textarea placeholder="Escriban aquí..."></textarea>
     </div>
 
-    <div class="q" data-q="8" data-type="radio">
-      <div class="q-label"><span class="q-badge">8</span><span class="q-text">Para marketing (hacerse conocer, publicidad, contenido) — ¿en qué rango mensual se sentirían cómodos empezando?</span></div>
-      <div class="choices">
-        <label class="chip"><input type="radio" name="presu_mkt" value="Aún no lo sé / prefiero que me orienten">Aún no lo sé / prefiero que me orienten</label>
-        <label class="chip"><input type="radio" name="presu_mkt" value="Hasta S/500/mes">Hasta S/500/mes</label>
-        <label class="chip"><input type="radio" name="presu_mkt" value="S/500-1500/mes">S/500–1500/mes</label>
-        <label class="chip"><input type="radio" name="presu_mkt" value="Más de S/1500/mes">Más de S/1500/mes</label>
-      </div>
-    </div>
-
-    <div class="q" data-q="9" data-type="radio">
-      <div class="q-label"><span class="q-badge">9</span><span class="q-text">Para mejorar procesos internos (software, CRM, herramientas) — ¿en qué rango se sentirían cómodos, como inversión inicial?</span></div>
-      <div class="choices">
-        <label class="chip"><input type="radio" name="presu_crm" value="Aún no lo sé / prefiero que me orienten">Aún no lo sé / prefiero que me orienten</label>
-        <label class="chip"><input type="radio" name="presu_crm" value="Hasta S/500">Hasta S/500</label>
-        <label class="chip"><input type="radio" name="presu_crm" value="S/500-2000">S/500–2000</label>
-        <label class="chip"><input type="radio" name="presu_crm" value="Más de S/2000">Más de S/2000</label>
-      </div>
-    </div>
   </div>
 
   <!-- PARTE 3 -->
@@ -425,13 +418,13 @@
     <span class="part-band">Parte 3 · Cómo trabajan</span>
     <h2>Cultura, lo que se nos pudo haber escapado, y lo que sienten hoy</h2>
 
-    <div class="q" data-q="10" data-type="text">
-      <div class="q-label"><span class="q-badge">10</span><span class="q-text">Si un cliente describiera en una palabra cómo se siente trabajar con ustedes, ¿qué palabra les gustaría que fuera? ¿Y cuál creen que usaría realmente hoy?</span></div>
+    <div class="q" data-q="8" data-type="text">
+      <div class="q-label"><span class="q-badge">8</span><span class="q-text">Si un cliente describiera en una palabra cómo se siente trabajar con ustedes, ¿qué palabra les gustaría que fuera? ¿Y cuál creen que usaría realmente hoy?</span></div>
       <textarea class="short" placeholder="Escriban aquí..."></textarea>
     </div>
 
-    <div class="q" data-q="11" data-type="radio">
-      <div class="q-label"><span class="q-badge">11</span><span class="q-text">¿Existen redes sociales, reseñas o anuncios que ustedes tengan y que nosotros no hayamos podido encontrar buscando desde afuera?</span></div>
+    <div class="q" data-q="9" data-type="radio">
+      <div class="q-label"><span class="q-badge">9</span><span class="q-text">¿Existen redes sociales, reseñas o anuncios que ustedes tengan y que nosotros no hayamos podido encontrar buscando desde afuera?</span></div>
       <div class="choices">
         <label class="chip"><input type="radio" name="redes" value="Sí">Sí</label>
         <label class="chip"><input type="radio" name="redes" value="No">No</label>
@@ -439,14 +432,14 @@
       <textarea class="short" placeholder="Si dijeron 'sí' — ¿cuáles?"></textarea>
     </div>
 
-    <div class="q" data-q="12" data-type="text">
-      <div class="q-label"><span class="q-badge">12</span><span class="q-text">¿Qué problemas sienten que tienen en este momento?</span></div>
+    <div class="q" data-q="10" data-type="text">
+      <div class="q-label"><span class="q-badge">10</span><span class="q-text">¿Qué problemas sienten que tienen en este momento?</span></div>
       <p class="q-why">Sin filtro — puede ser de marketing, de ventas, de organización interna, lo que sea que les quite el sueño hoy.</p>
       <textarea placeholder="Escriban aquí, con toda confianza..."></textarea>
     </div>
 
-    <div class="q" data-q="13" data-type="text">
-      <div class="q-label"><span class="q-badge">13</span><span class="q-text">¿En qué tiempo quisieran solucionar estos problemas?</span></div>
+    <div class="q" data-q="11" data-type="text">
+      <div class="q-label"><span class="q-badge">11</span><span class="q-text">¿En qué tiempo quisieran solucionar estos problemas?</span></div>
       <textarea class="short" placeholder="Escriban aquí..."></textarea>
     </div>
   </div>
@@ -458,8 +451,11 @@
   <p class="credit">DATIA · MAXIMUSMARKETINGMACHINE</p>
 </div>
 
-<div class="footer">
-  <button class="btn-export" id="exportBtn">Descargar respuestas</button>
+<div class="footer-wrap">
+  <div class="footer">
+    <button class="btn-export" id="submitBtn">Enviar respuestas</button>
+  </div>
+  <p class="submit-status" id="submitStatus"></p>
 </div>
 
 <script>
@@ -479,27 +475,27 @@
     '¿Qué hacen en la posventa?'
   ];
 
+  const INITIAL_STEPS = 3;
+
+  function addStepToContainer(container, index) {
+    const hint = DEFAULT_STEP_HINTS[index] || '¿Y después?';
+    const div = document.createElement('div');
+    div.className = 'proc-step';
+    div.innerHTML = '<span class="step-num">Paso ' + (index + 1) + '</span><input type="text" placeholder="' + hint + '">';
+    div.querySelector('input').addEventListener('input', updateProgress);
+    container.appendChild(div);
+  }
+
   function buildSteps(container) {
     container.innerHTML = '';
-    DEFAULT_STEP_HINTS.forEach((hint, i) => {
-      const div = document.createElement('div');
-      div.className = 'proc-step';
-      div.innerHTML = '<span class="step-num">Paso ' + (i + 1) + '</span><input type="text" placeholder="' + hint + '">';
-      div.querySelector('input').addEventListener('input', updateProgress);
-      container.appendChild(div);
-    });
+    for (let i = 0; i < INITIAL_STEPS; i++) addStepToContainer(container, i);
   }
 
   function wireAddStepButton(block) {
     const btn = block.querySelector('.btn-addstep');
     btn.addEventListener('click', () => {
       const steps = block.querySelector('.proc-steps');
-      const n = steps.children.length + 1;
-      const div = document.createElement('div');
-      div.className = 'proc-step';
-      div.innerHTML = '<span class="step-num">Paso ' + n + '</span><input type="text" placeholder="¿Y después?">';
-      steps.appendChild(div);
-      div.querySelector('input').addEventListener('input', updateProgress);
+      addStepToContainer(steps, steps.children.length);
     });
   }
 
@@ -610,43 +606,70 @@
     el.addEventListener('change', updateProgress);
   });
 
-  document.getElementById('exportBtn').addEventListener('click', () => {
-    let out = 'QUINTANA PROPIEDADES — FICHA EJECUTIVA\nDATIA · MaximusMarketingMachine\nRespuestas — ' + new Date().toLocaleDateString('es-PE') + '\n\n';
-    questions.forEach(q => {
-      const label = q.querySelector('.q-text').textContent.trim();
-      out += '---\n' + label + '\n';
-      const type = q.dataset.type;
-      if (type === 'check') {
-        const checked = Array.from(q.querySelectorAll('.choices input[type="checkbox"]')).filter(b => b.checked).map(b => b.value);
-        out += (checked.length ? checked.join(', ') : '[ninguna marcada]') + '\n';
-      }
-      if (type === 'radio') {
-        const r = Array.from(q.querySelectorAll('.choices input[type="radio"]')).find(r => r.checked);
-        out += (r ? r.value : '[sin marcar]') + '\n';
-      }
-      if (type === 'process') {
-        const blocks = q.querySelectorAll('.proc-block:not([hidden])');
-        if (!blocks.length) out += '[ningún servicio marcado]\n';
+  const WEB_APP_URL = '__WEB_APP_URL__';
+
+  function buildAnswerValue(q) {
+    const type = q.dataset.type;
+    let parts = [];
+    if (type === 'check') {
+      const checked = Array.from(q.querySelectorAll('.choices input[type="checkbox"]')).filter(b => b.checked).map(b => b.value);
+      parts.push(checked.length ? checked.join(', ') : '(ninguna marcada)');
+    }
+    if (type === 'radio') {
+      const r = Array.from(q.querySelectorAll('.choices input[type="radio"]')).find(r => r.checked);
+      parts.push(r ? r.value : '(sin marcar)');
+    }
+    if (type === 'process') {
+      const blocks = q.querySelectorAll('.proc-block:not([hidden])');
+      if (!blocks.length) {
+        parts.push('(ningún servicio marcado)');
+      } else {
         blocks.forEach(b => {
-          out += '\n  ' + b.dataset.service + ':\n';
-          b.querySelectorAll('.proc-step input[type="text"]').forEach((inp, i) => {
-            if (inp.value.trim()) out += '    Paso ' + (i + 1) + ': ' + inp.value.trim() + '\n';
-          });
+          const steps = Array.from(b.querySelectorAll('.proc-step input[type="text"]'))
+            .map((inp, i) => inp.value.trim() ? ('Paso ' + (i + 1) + ': ' + inp.value.trim()) : null)
+            .filter(Boolean);
+          parts.push(b.dataset.service + ' — ' + (steps.length ? steps.join(' | ') : '(sin pasos)'));
         });
       }
-      const ta = q.querySelector('textarea');
-      if (ta) out += (ta.value.trim() || '[sin responder]') + '\n';
-      out += '\n';
+    }
+    const ta = q.querySelector('textarea');
+    if (ta) parts.push(ta.value.trim() || '(sin responder)');
+    return parts.join(' / ');
+  }
+
+  function collectSubmission() {
+    return questions.map(q => ({
+      label: q.querySelector('.q-text').textContent.trim(),
+      value: buildAnswerValue(q)
+    }));
+  }
+
+  const submitBtn = document.getElementById('submitBtn');
+  const statusEl = document.getElementById('submitStatus');
+
+  submitBtn.addEventListener('click', () => {
+    if (!WEB_APP_URL || WEB_APP_URL.indexOf('__WEB_APP_URL__') !== -1) {
+      statusEl.textContent = 'Este formulario aún no está conectado — avisen a Maximus antes de compartirlo.';
+      statusEl.className = 'submit-status warn';
+      return;
+    }
+    submitBtn.disabled = true;
+    statusEl.textContent = 'Enviando...';
+    statusEl.className = 'submit-status';
+    fetch(WEB_APP_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({ answers: collectSubmission(), fecha: new Date().toISOString() })
+    }).then(() => {
+      statusEl.textContent = '¡Gracias! Sus respuestas fueron enviadas.';
+      statusEl.className = 'submit-status ok';
+      submitBtn.textContent = 'Enviado ✓';
+    }).catch(() => {
+      statusEl.textContent = 'Hubo un problema al enviar. Intenten de nuevo en un momento.';
+      statusEl.className = 'submit-status warn';
+      submitBtn.disabled = false;
     });
-    const blob = new Blob([out], { type: 'text/plain;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'Quintana Propiedades - Respuestas Ficha Ejecutiva.txt';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
   });
 
   refreshEmptyHint();
